@@ -6,3 +6,5 @@ The historical prices shown in the graphs were sourced on January 10, 2018, from
 
 - [Coindesk](https://www.coindesk.com/price/) for Bitcoin 
 - [Etherscan](https://etherscan.io/chart/etherprice) for Ether
+
+The submission can be viewed under [https://haechi.github.io/DataProducts-WK3](https://haechi.github.io/DataProducts-WK3) as Github page.
