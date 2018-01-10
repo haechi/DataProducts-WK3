@@ -1,0 +1,36 @@
+---
+title: "Developing Data Products Week 3 Peer Assignment"
+author: "Alexander Zhou"
+date: "1/10/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(plotly)
+require(tidyr) 
+require(dplyr)
+```
+
+## BTC and ETH Historical Price Charts
+
+The historical prices shown in the graphs were sourced on January 10, 2018, from 
+
+- [Coindesk](https://www.coindesk.com/price/) for Bitcoin 
+- [Etherscan](https://etherscan.io/chart/etherprice) for Ether
+
+The R Markdown file and the raw data are accessable in the Github [repository](https://github.com/haechi/DataProducts-WK3).  
+```{r data-import, echo=FALSE}
+btc <- read.csv("coindesk-BTC-close_data-2016-01-01_2018-01-09.csv", nrows = 740, header = T)
+eth <- read.csv("etherscan-ETH-close_data-2016-01-01_2018-01-09.csv", nrows = 737, header = T)
+
+btc <- as.data.frame(btc) %>% mutate(Date = as.POSIXct(btc[,1], format="%Y-%m-%d %H:%M:%S")) %>% rename(Price = "Close.Price") %>% mutate(Ticker = "BTC")
+eth <- as.data.frame(eth) %>% rename(Date = "Date.UTC.", Price = "Value") %>% mutate(Date = as.POSIXct(eth[,1], format="%m/%d/%Y")) %>% subset(select = -UnixTimeStamp) %>% mutate(Ticker = "ETH")
+```
+
+## Price Charts
+Plotting the tidy data set usign `plot_ly`
+```{r plot, echo=FALSE, warning=FALSE}
+plot_ly(rbind(btc,eth), x = ~Date, y = ~Price, color = ~Ticker, type = "scatter", mode = "lines")
+```
+
