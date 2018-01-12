@@ -1,8 +1,8 @@
 ---
-title: "Developing Data Products Week 3 Peer Assignment"
+title: "Developing Data Products Week 3 Assignment"
 author: "Alexander Zhou"
 date: "1/10/2018"
-output: html_document
+output: ioslides_presentation
 ---
 
 ```{r setup, include=FALSE}
